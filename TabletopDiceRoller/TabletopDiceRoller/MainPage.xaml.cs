@@ -13,5 +13,14 @@ namespace TabletopDiceRoller
         {
             InitializeComponent();
         }
+
+        private void OnButtonClick(Button sender, EventArgs e)
+        {
+            Output.Text = "";
+            var value = sender.CommandParameter.ToString();
+            Random rnd = new Random();
+            int roll = rnd.Next(1, Convert.ToInt32(value));
+            Output.Text = roll.ToString();
+        }
     }
 }

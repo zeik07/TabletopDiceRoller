@@ -6,9 +6,17 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
+        <Label Text="Tabletop Dice Roller" 
            HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+           VerticalOptions="Start" FontSize="20" />
+        <Button Text="d4" Clicked="OnButtonClick" FontSize="20" x:Name="Roll4" CommandParameter="5"/>
+        <Button Text="d6" Clicked="OnButtonClick" FontSize="20" x:Name="Roll6" CommandParameter="7"/>
+        <Button Text="d8" Clicked="OnButtonClick" FontSize="20" x:Name="Roll8" CommandParameter="9"/>
+        <Button Text="d10" Clicked="OnButtonClick" FontSize="20" x:Name="Roll10" CommandParameter="11"/>
+        <Button Text="d12" Clicked="OnButtonClick" FontSize="20" x:Name="Roll12" CommandParameter="13"/>
+        <Button Text="d20" Clicked="OnButtonClick" FontSize="20" x:Name="Roll20" CommandParameter="21"/>
+        <Button Text="d100" Clicked="OnButtonClick" FontSize="20" x:Name="Roll100" CommandParameter="101"/>        
+        <Label x:Name="Output" FontSize="40" HorizontalOptions="Center" VerticalOptions="End" HorizontalTextAlignment="Center"/>
     </StackLayout>
 
 </ContentPage>
