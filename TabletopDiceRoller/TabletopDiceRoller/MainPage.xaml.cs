@@ -18,9 +18,14 @@ namespace TabletopDiceRoller
         {
             Output.Text = "";
             var value = sender.CommandParameter.ToString();
+            Output.Text = Roll(value).ToString();
+        }
+
+        private int Roll(string value)
+        {
             Random rnd = new Random();
-            int roll = rnd.Next(1, Convert.ToInt32(value));
-            Output.Text = roll.ToString();
+            int rolled = rnd.Next(1, Convert.ToInt32(value));
+            return rolled;
         }
     }
 }
