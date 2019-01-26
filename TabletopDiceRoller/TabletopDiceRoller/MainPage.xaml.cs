@@ -16,14 +16,14 @@ namespace TabletopDiceRoller
 
         private void OnButtonClick(Button sender, EventArgs e)
         {
-            Output.Text = "";
             var value = sender.CommandParameter.ToString();
-            Output.Text = Roll(value).ToString();
+            string die = ("d" + (Convert.ToInt32(value) - 1).ToString());
+            DisplayAlert(die , Roll(value).ToString(), " ");            
         }
 
         private int Roll(string value)
         {
-            Random rnd = new Random();
+            Random rnd = new Random(Environment.TickCount);
             int rolled = rnd.Next(1, Convert.ToInt32(value));
             return rolled;
         }

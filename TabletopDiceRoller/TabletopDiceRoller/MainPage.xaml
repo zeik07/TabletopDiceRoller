@@ -4,27 +4,29 @@
              xmlns:local="clr-namespace:TabletopDiceRoller"
              x:Class="TabletopDiceRoller.MainPage">
 
-    <StackLayout>        
+    <StackLayout HorizontalOptions="Center" BackgroundColor="DarkSlateGray">
         <!-- Place new controls here -->
         <Label Text="Tabletop Dice Roller" 
            HorizontalOptions="Center"
-           VerticalOptions="Start" FontSize="20" />
+           VerticalOptions="Start" FontSize="40" />
         <Grid>
-            <Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>                
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button Text="d4" Clicked="OnButtonClick" FontSize="20" x:Name="Roll4" CommandParameter="5" Grid.Row="0" Grid.Column="0"/>
-            <Button Text="d6" Clicked="OnButtonClick" FontSize="20" x:Name="Roll6" CommandParameter="7" Grid.Row="0" Grid.Column="1"/>
-            <Button Text="d8" Clicked="OnButtonClick" FontSize="20" x:Name="Roll8" CommandParameter="9" Grid.Row="1" Grid.Column="0"/>
-            <Button Text="d10" Clicked="OnButtonClick" FontSize="20" x:Name="Roll10" CommandParameter="11" Grid.Row="1" Grid.Column="1"/>
-            <Button Text="d12" Clicked="OnButtonClick" FontSize="20" x:Name="Roll12" CommandParameter="13" Grid.Row="2" Grid.Column="0"/>
-            <Button Text="d20" Clicked="OnButtonClick" FontSize="20" x:Name="Roll20" CommandParameter="21" Grid.Row="2" Grid.Column="1"/>
-            <Button Text="d100" Clicked="OnButtonClick" FontSize="20" x:Name="Roll100" CommandParameter="101" Grid.Row="3" Grid.Column="0"/>
+            <Button Text="d4" Clicked="OnButtonClick" FontSize="20" x:Name="Roll4" CommandParameter="5" Grid.Row="0" Grid.Column="1"/>
+            <Button Text="d6" Clicked="OnButtonClick" FontSize="20" x:Name="Roll6" CommandParameter="7" Grid.Row="0" Grid.Column="3"/>
+            <Button Text="d8" Clicked="OnButtonClick" FontSize="20" x:Name="Roll8" CommandParameter="9" Grid.Row="1" Grid.Column="1"/>
+            <Button Text="d10" Clicked="OnButtonClick" FontSize="20" x:Name="Roll10" CommandParameter="11" Grid.Row="1" Grid.Column="3"/>
+            <Button Text="d12" Clicked="OnButtonClick" FontSize="20" x:Name="Roll12" CommandParameter="13" Grid.Row="2" Grid.Column="1"/>
+            <Button Text="d20" Clicked="OnButtonClick" FontSize="20" x:Name="Roll20" CommandParameter="21" Grid.Row="2" Grid.Column="3"/>
+            <Button Text="d100" Clicked="OnButtonClick" FontSize="20" x:Name="Roll100" CommandParameter="101" Grid.Row="3" Grid.Column="1"/>
         </Grid>
-        <Label x:Name="Output" FontSize="40" HorizontalOptions="Center" VerticalOptions="End" HorizontalTextAlignment="Center"/>
     </StackLayout>
-
 </ContentPage>
