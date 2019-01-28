@@ -20,15 +20,7 @@ namespace TabletopDiceRoller
             string die = ("d" + (Convert.ToInt32(value) - 1).ToString());
             string roll = Roll(value).ToString();
             DisplayRoll(die, roll, roll);
-        }
-
-        private void PageTap(object sender, EventArgs e)
-        {
-            TopLabel.Text = "";
-            ContentLabel.Text = "";
-            BottomLabel.Text = "";
-            PopUp.IsVisible = false;
-        }
+        }        
 
         private int Roll(string value)
         {
@@ -37,12 +29,10 @@ namespace TabletopDiceRoller
             return rolled;
         }
 
-        private void DisplayRoll(string die, string roll, string values)
+        private async void DisplayRoll(string die, string roll, string values)
         {
-            PopUp.IsVisible = true;
-            TopLabel.Text = die;
-            ContentLabel.Text = roll;
-            BottomLabel.Text = values;            
+            var popUpPage = new DiceRoll(die, roll, values);
+            await Navigation.PushModalAsync(popUpPage, false);      
         }
     }
 }
