@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TabletopDiceRoller"
              x:Class="TabletopDiceRoller.MainPage">
-    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DarkSlateGray">        
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black">        
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <!-- Place new controls here -->
             <Label Text="Tabletop Dice Roller" 
            HorizontalOptions="Center"
-           VerticalOptions="Start" FontSize="40" />
+           VerticalOptions="Start" FontSize="40" TextColor="White" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -20,24 +20,26 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button Text="d4" Clicked="OnButtonClick" FontSize="20" x:Name="Roll4" CommandParameter="5" Grid.Row="0" Grid.Column="1"/>
-                <Button Text="d6" Clicked="OnButtonClick" FontSize="20" x:Name="Roll6" CommandParameter="7" Grid.Row="0" Grid.Column="3"/>
-                <Button Text="d8" Clicked="OnButtonClick" FontSize="20" x:Name="Roll8" CommandParameter="9" Grid.Row="1" Grid.Column="1"/>
-                <Button Text="d10" Clicked="OnButtonClick" FontSize="20" x:Name="Roll10" CommandParameter="11" Grid.Row="1" Grid.Column="3"/>
-                <Button Text="d12" Clicked="OnButtonClick" FontSize="20" x:Name="Roll12" CommandParameter="13" Grid.Row="2" Grid.Column="1"/>
-                <Button Text="d20" Clicked="OnButtonClick" FontSize="20" x:Name="Roll20" CommandParameter="21" Grid.Row="2" Grid.Column="3"/>
-                <Button Text="d100" Clicked="OnButtonClick" FontSize="20" x:Name="Roll100" CommandParameter="101" Grid.Row="3" Grid.Column="1"/>
+                <Button BackgroundColor="DarkSlateGray" Text="d4" Clicked="OnButtonClick" FontSize="20" x:Name="Roll4" CommandParameter="5" Grid.Row="0" Grid.Column="1"/>
+                <Button BackgroundColor="DarkSlateGray" Text="d6" Clicked="OnButtonClick" FontSize="20" x:Name="Roll6" CommandParameter="7" Grid.Row="0" Grid.Column="3"/>
+                <Button BackgroundColor="DarkSlateGray" Text="d8" Clicked="OnButtonClick" FontSize="20" x:Name="Roll8" CommandParameter="9" Grid.Row="1" Grid.Column="1"/>
+                <Button BackgroundColor="DarkSlateGray" Text="d10" Clicked="OnButtonClick" FontSize="20" x:Name="Roll10" CommandParameter="11" Grid.Row="1" Grid.Column="3"/>
+                <Button BackgroundColor="DarkSlateGray" Text="d12" Clicked="OnButtonClick" FontSize="20" x:Name="Roll12" CommandParameter="13" Grid.Row="2" Grid.Column="1"/>
+                <Button BackgroundColor="DarkSlateGray" Text="d20" Clicked="OnButtonClick" FontSize="20" x:Name="Roll20" CommandParameter="21" Grid.Row="2" Grid.Column="3"/>
+                <Button BackgroundColor="DarkSlateGray" Text="d100" Clicked="OnButtonClick" FontSize="20" x:Name="Roll100" CommandParameter="101" Grid.Row="3" Grid.Column="1"/>
             </Grid>
         </StackLayout>
         <AbsoluteLayout x:Name="PopUp" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#894f5051" IsVisible="False">
+            <AbsoluteLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PageTap" NumberOfTapsRequired="1" />
+            </AbsoluteLayout.GestureRecognizers>
             <Frame BackgroundColor="Black"  AbsoluteLayout.LayoutBounds=".5,.5,.5,.3" AbsoluteLayout.LayoutFlags="All" Opacity="1">
                 <StackLayout>
                     <Label x:Name="TopLabel" Text="" FontSize="Medium" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="Start" />
-                    <Label x:Name="ContentLabel" Text="" FontSize="Large" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label x:Name="BottomLabel" Text="" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="End" />
+                    <Label x:Name="ContentLabel" Text="" FontSize="72" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                    <Label x:Name="BottomLabel" Text="" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="End" LineBreakMode="WordWrap" />
                 </StackLayout>
             </Frame>
-            <Button AbsoluteLayout.LayoutBounds=".5,1,.3,.1" AbsoluteLayout.LayoutFlags="All" Text="OK" Clicked="OnOkClick" FontSize="20" />
         </AbsoluteLayout>
     </AbsoluteLayout>
 </ContentPage>

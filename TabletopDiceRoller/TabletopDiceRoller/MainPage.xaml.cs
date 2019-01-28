@@ -22,8 +22,8 @@ namespace TabletopDiceRoller
             DisplayRoll(die, roll, roll);
         }
 
-        private void OnOkClick(object sender, EventArgs e)
-        {            
+        private void PageTap(object sender, EventArgs e)
+        {
             TopLabel.Text = "";
             ContentLabel.Text = "";
             BottomLabel.Text = "";
