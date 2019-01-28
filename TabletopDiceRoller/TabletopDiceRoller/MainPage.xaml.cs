@@ -14,11 +14,20 @@ namespace TabletopDiceRoller
             InitializeComponent();
         }
 
-        private void OnButtonClick(Button sender, EventArgs e)
+        private void OnButtonClick(Button button, EventArgs e)
         {
-            var value = sender.CommandParameter.ToString();
+            var value = button.CommandParameter.ToString();
             string die = ("d" + (Convert.ToInt32(value) - 1).ToString());
-            DisplayAlert(die , Roll(value).ToString(), " ");            
+            string roll = Roll(value).ToString();
+            DisplayRoll(die, roll, roll);
+        }
+
+        private void OnOkClick(object sender, EventArgs e)
+        {            
+            TopLabel.Text = "";
+            ContentLabel.Text = "";
+            BottomLabel.Text = "";
+            PopUp.IsVisible = false;
         }
 
         private int Roll(string value)
@@ -26,6 +35,14 @@ namespace TabletopDiceRoller
             Random rnd = new Random(Environment.TickCount);
             int rolled = rnd.Next(1, Convert.ToInt32(value));
             return rolled;
+        }
+
+        private void DisplayRoll(string die, string roll, string values)
+        {
+            PopUp.IsVisible = true;
+            TopLabel.Text = die;
+            ContentLabel.Text = roll;
+            BottomLabel.Text = values;            
         }
     }
 }
