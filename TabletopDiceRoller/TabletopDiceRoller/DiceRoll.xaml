@@ -3,17 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TabletopDiceRoller.DiceRoll">
     <ContentPage.Content>
-        <AbsoluteLayout x:Name="PopUp" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#894f5051">
+        <AbsoluteLayout x:Name="PopUp" BackgroundColor="Black">
             <AbsoluteLayout.GestureRecognizers>
                 <TapGestureRecognizer Tapped="PageTap" NumberOfTapsRequired="1" />
             </AbsoluteLayout.GestureRecognizers>
-            <Frame BackgroundColor="Black"  AbsoluteLayout.LayoutBounds=".5,.5,.5,.3" AbsoluteLayout.LayoutFlags="All" Opacity="1">
-                <StackLayout>
-                    <Label x:Name="TopLabel" Text="" FontSize="Medium" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="Start" />
-                    <Label x:Name="ContentLabel" Text="" FontSize="72" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                    <Label x:Name="BottomLabel" Text="" FontSize="Small" TextColor="LightGray" HorizontalOptions="Center" VerticalOptions="End" LineBreakMode="WordWrap" />
+                <StackLayout BackgroundColor="DarkSlateGray" AbsoluteLayout.LayoutBounds=".5,.5,.5,.3" AbsoluteLayout.LayoutFlags="All">
+                    <Label x:Name="TopLabel" Text="" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" />
+                    <Label x:Name="ContentLabel" Text="" FontSize="72" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                    <Label x:Name="BottomLabel" Text="" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="End" LineBreakMode="WordWrap" />
                 </StackLayout>
-            </Frame>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
