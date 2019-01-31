@@ -18,13 +18,13 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button BackgroundColor="DarkSlateGray" Text="d4" TextColor="White" Clicked="OnButtonClick" FontSize="20" x:Name="Roll4" CommandParameter="5" Grid.Row="0" Grid.Column="1"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d6" TextColor="White" Clicked="OnButtonClick" FontSize="20" x:Name="Roll6" CommandParameter="7" Grid.Row="0" Grid.Column="3"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d8" TextColor="White" Clicked="OnButtonClick" FontSize="20" x:Name="Roll8" CommandParameter="9" Grid.Row="1" Grid.Column="1"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d10" TextColor="White" Clicked="OnButtonClick" FontSize="20" x:Name="Roll10" CommandParameter="11" Grid.Row="1" Grid.Column="3"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d12" TextColor="White" Clicked="OnButtonClick" FontSize="20" x:Name="Roll12" CommandParameter="13" Grid.Row="2" Grid.Column="1"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d20" TextColor="White" Clicked="OnButtonClick" FontSize="20" x:Name="Roll20" CommandParameter="21" Grid.Row="2" Grid.Column="3"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d100" TextColor="White" Clicked="OnButtonClick" FontSize="20" x:Name="Roll100" CommandParameter="101" Grid.Row="3" Grid.Column="1"/>
+                    <Button BackgroundColor="DarkSlateGray" Text="d4" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="1"/>
+                    <Button BackgroundColor="DarkSlateGray" Text="d6" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="3"/>
+                    <Button BackgroundColor="DarkSlateGray" Text="d8" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+                    <Button BackgroundColor="DarkSlateGray" Text="d10" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="3"/>
+                    <Button BackgroundColor="DarkSlateGray" Text="d12" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="1"/>
+                    <Button BackgroundColor="DarkSlateGray" Text="d20" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="3"/>
+                    <Button BackgroundColor="DarkSlateGray" Text="d100" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="3" Grid.Column="1"/>
                 </Grid>
             </StackLayout>
     </ContentPage>

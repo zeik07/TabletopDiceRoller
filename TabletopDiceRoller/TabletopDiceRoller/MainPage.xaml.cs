@@ -18,15 +18,16 @@ namespace TabletopDiceRoller
 
         private void OnButtonClick(Button button, EventArgs e)
         {
-            var value = button.CommandParameter.ToString();
-            string die = ("d" + (Convert.ToInt32(value) - 1).ToString());
+            string[] split = button.Text.Split('d');
+            int value = Convert.ToInt32(split[1]);
+            string die = button.Text;
             string roll = Roll(value).ToString();
             DisplayRoll(die, roll, roll);
         }        
 
-        private int Roll(string value)
+        private int Roll(int value)
         {            
-            int rolled = rnd.Next(1, Convert.ToInt32(value));
+            int rolled = rnd.Next(1, (value + 1));
             return rolled;
         }
 
@@ -55,7 +56,7 @@ namespace TabletopDiceRoller
                             throw new Exception();
                         }
                         string[] diceResult = new string[Convert.ToInt32(diceRoll[0])];
-                        string diceValue = (Convert.ToInt32(diceRoll[1]) + 1).ToString();
+                        int diceValue = Convert.ToInt32(diceRoll[1]);
                         for (int i = 0; i < Convert.ToInt32(diceRoll[0]) ; i++)
                         {                            
                             diceResult[i] = Roll(diceValue).ToString();
