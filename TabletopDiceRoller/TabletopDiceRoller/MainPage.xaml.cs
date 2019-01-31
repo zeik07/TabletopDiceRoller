@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -10,6 +12,7 @@ namespace TabletopDiceRoller
     public partial class MainPage : TabbedPage
     {
         private Random rnd = new Random(Environment.TickCount);
+        DataTable dt = new DataTable();
 
         public MainPage()
         {
@@ -39,8 +42,10 @@ namespace TabletopDiceRoller
 
         private void OnCustomClick(object sender, EventArgs e)
         {
+            string error = "Improper format. e.g. 8d6+1d4+1";
             string input = CustomRollInput.Text;
-            string[] roll = input.Split('+', '-');
+            string reg = @"([\+\-])";
+            string[] roll = Regex.Split(input, reg);
             string outputRoll = "";
             foreach (string r in roll)
             {
@@ -73,20 +78,28 @@ namespace TabletopDiceRoller
                                 rollValue += "+" + result;
                             }
                         }
-                        outputRoll += rollValue + " ";
+                        outputRoll += rollValue;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        outputRoll = "Improper format. e.g. 8d6+1d4+1";
+                        outputRoll = error;
                         break;
                     }                    
                 }
                 else
                 {
-                    outputRoll += r + " ";
+                    outputRoll += r;
                 }                
             }
-            CustomOutput.Text = outputRoll;
+            try
+            {
+                int sum = (int)dt.Compute(outputRoll, "");
+                DisplayRoll(input, sum.ToString(), outputRoll);
+            }
+            catch
+            {
+                DisplayRoll(input, "Error", outputRoll);
+            }
         }
 
         private void OnCustomInput(Button button, EventArgs e)

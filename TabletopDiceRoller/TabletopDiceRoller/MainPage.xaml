@@ -36,7 +36,6 @@
             <Label Text="Dice Rolls" TextColor="White"/>
             <Label x:Name="CustomRollInput" BackgroundColor="White" TextColor="Black" FontSize="20" />
             <Button x:Name="CustomRollOk" Text="Ok" BackgroundColor="DarkSlateGray" TextColor="White" Clicked="OnCustomClick" FontSize="20"/>
-            <Label x:Name="CustomOutput" Text="" TextColor="White"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
