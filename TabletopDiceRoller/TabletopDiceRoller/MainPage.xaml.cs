@@ -1,6 +1,8 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -39,6 +41,12 @@ namespace TabletopDiceRoller
             var popUpPage = new DiceRoll(die, roll, values);
             await Navigation.PushModalAsync(popUpPage, false);      
         }
+
+        private void OnCustomSave(object sender, EventArgs e)
+        {
+            
+        }
+
 
         private void OnCustomClick(object sender, EventArgs e)
         {

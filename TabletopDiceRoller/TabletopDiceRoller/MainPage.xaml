@@ -3,39 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TabletopDiceRoller"
              x:Class="TabletopDiceRoller.MainPage">
+    <TabbedPage.Resources>
+        <StyleSheet Source="css/styles.css" />
+    </TabbedPage.Resources>
     <ContentPage x:Name="DicePage" Title="Dice Page">
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black">
-                <!-- Place new controls here -->
-                <Label Text="Tabletop Dice Roller" HorizontalOptions="Center" VerticalOptions="Start" FontSize="40" TextColor="White" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Button BackgroundColor="DarkSlateGray" Text="d4" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="1"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d6" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="3"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d8" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="1"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d10" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="3"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d12" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="1"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d20" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="3"/>
-                    <Button BackgroundColor="DarkSlateGray" Text="d100" TextColor="White" Clicked="OnButtonClick" FontSize="20" Grid.Row="3" Grid.Column="1"/>
-                </Grid>
-            </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <!-- Place new controls here -->
+            <Label Text="Tabletop Dice Roller" HorizontalOptions="Center" VerticalOptions="Start" FontSize="40" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="d4" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="1"/>
+                <Button Text="d6" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="3"/>
+                <Button Text="d8" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+                <Button Text="d10" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="3"/>
+                <Button Text="d12" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="1"/>
+                <Button Text="d20" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="3"/>
+                <Button Text="d100" Clicked="OnButtonClick" FontSize="20" Grid.Row="3" Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
     </ContentPage>
     <ContentPage x:Name="CustomRoll" Title="Custom Roll">
-        <StackLayout BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Text="Tabletop Dice Roller" FontSize="40" TextColor="White" HorizontalOptions="Center" />
-            <Label Text="Name" TextColor="White"/>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />
+            <Label Text="Name" />
             <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" />
-            <Label Text="Dice Rolls" TextColor="White"/>
+            <Label Text="Dice Rolls" />
             <Label x:Name="CustomRollInput" BackgroundColor="White" TextColor="Black" FontSize="20" />
-            <Button x:Name="CustomRollOk" Text="Ok" BackgroundColor="DarkSlateGray" TextColor="White" Clicked="OnCustomClick" FontSize="20"/>
+            <Button x:Name="CustomRollOk" Text="Ok" Clicked="OnCustomClick" FontSize="20"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -70,6 +73,7 @@
                 <Button Text="-" Grid.Column="3" Grid.Row="2" Clicked="OnCustomInput" />
                 <Button Text="Del" Grid.Column="3" Grid.Row="5" Clicked="OnCustomInput" />
             </Grid>
+            <Button Text="Save" Clicked="OnCustomSave" />
         </StackLayout>
     </ContentPage>
 </TabbedPage>
