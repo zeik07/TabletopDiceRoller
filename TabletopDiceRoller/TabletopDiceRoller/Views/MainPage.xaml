@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TabletopDiceRoller"
              x:Class="TabletopDiceRoller.MainPage">
     <TabbedPage.Resources>
-        <StyleSheet Source="css/styles.css" />
+        <StyleSheet Source="/css/styles.css" />
     </TabbedPage.Resources>
     <ContentPage x:Name="DicePage" Title="Dice Page">
         <StackLayout>

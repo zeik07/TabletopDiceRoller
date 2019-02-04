@@ -1,59 +1,78 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using TabletopDiceRoller.Modules;
 
 namespace TabletopDiceRoller
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CustomRollsView : ContentPage
 	{
-        Dictionary<int, KeyValuePair<string, string>> rolls = new Dictionary<int, KeyValuePair<string, string>>();
+        Roll roll = new Roll();
 
         public CustomRollsView ()
 		{
-			InitializeComponent ();
-		}
+			InitializeComponent ();            
+        }
 
-        public async void CustomRoll(object sender, EventArgs e)
+        public async void CustomRolls(object sender, EventArgs e)
         {
             var customRolls = await App.Database.GetItemsAsync();
-            foreach (var roll in customRolls)
+
+            var customRollsDataTemplate = new DataTemplate(() =>
             {
-                if (roll.Name == null || roll.Roll == null)
+                var grid = new Grid();
+                var rollButton = new Button();
+                var idLabel = new Label();
+                var nameLabel = new Label();
+                var rollLabel = new Label();
+                var deleteButton = new Button();
+
+                rollButton.Text = "Roll";
+                rollButton.Clicked += OnRollClick;
+                rollButton.SetBinding(Button.CommandParameterProperty, "Roll");
+                nameLabel.SetBinding(Label.TextProperty, "Name");
+                rollLabel.SetBinding(Label.TextProperty, "Roll");
+                deleteButton.Text = "Delete";
+                deleteButton.Clicked += OnCustomDelete;
+                deleteButton.SetBinding(Button.CommandParameterProperty, "ID");
+
+                grid.Children.Add(rollButton);
+                grid.Children.Add(nameLabel, 1, 0);
+                grid.Children.Add(rollLabel, 2, 0);
+                grid.Children.Add(deleteButton, 3, 0);
+
+                return new ViewCell { View = grid };
+            });
+
+            Content = new StackLayout
+            {
+                Children =
                 {
-                    if (roll.Name == null && roll.Roll == null)
-                    {
-                        rolls.Add(roll.ID, new KeyValuePair<string, string>(roll.ID.ToString(), roll.ID.ToString()));
-                    }
-                    else if (roll.Roll == null)
-                    {
-                        rolls.Add(roll.ID, new KeyValuePair<string, string>(roll.Name, roll.ID.ToString()));
-                    }
-                    else
-                    {
-                        rolls.Add(roll.ID, new KeyValuePair<string, string>(roll.ID.ToString(), roll.Roll));
-                    }
-                }
-                else
-                {
-                    rolls.Add(roll.ID, new KeyValuePair<string, string>(roll.Name, roll.Roll));
-                }
-            }
-            CustomRollsList.ItemsSource = rolls.Values.Select(kvp => kvp.Value);
+                    new ListView { ItemsSource = customRolls, ItemTemplate = customRollsDataTemplate }                
+                }                
+            };            
         }
 
-        private void CustomDrop(object sender, EventArgs e)
+        private async void OnCustomDelete(object sender, EventArgs e)
         {
-            CustomRollsList.ItemsSource = null;
-            rolls.Clear();
+            Button button = (Button)sender;
+            RollItem delRoll = new RollItem();
+            delRoll.ID = Convert.ToInt32(button.CommandParameter.ToString());
+            await App.Database.DeleteItemAsync(delRoll);
+
+            var viewModel = BindingContext;
+
+            BindingContext = null;
+            InitializeComponent();
+
+            BindingContext = viewModel;
         }
 
-        private void OnCustomDelete(object sender, EventArgs e)
+        public void OnRollClick(object sender, EventArgs e)
         {
-            //await App.Database.DeleteItemAsync(CustomRollsList.SelectedItem);
-            //testoutput.Text = rolls[(string)CustomRollsList.SelectedItem];
+            Button button = (Button)sender;
+            roll.CustomRoll(button.CommandParameter.ToString());
         }
     }
 }

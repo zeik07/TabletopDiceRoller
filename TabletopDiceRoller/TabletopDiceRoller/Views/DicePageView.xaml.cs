@@ -15,8 +15,9 @@ namespace TabletopDiceRoller
 			InitializeComponent ();
 		}
 
-        private void OnButtonClick(Button button, EventArgs e)
+        private void OnButtonClick(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
             string[] split = button.Text.Split('d');
             int value = Convert.ToInt32(split[1]);
             string die = button.Text;
