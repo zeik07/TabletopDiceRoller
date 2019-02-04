@@ -7,73 +7,12 @@
         <StyleSheet Source="css/styles.css" />
     </TabbedPage.Resources>
     <ContentPage x:Name="DicePage" Title="Dice Page">
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <!-- Place new controls here -->
-            <Label Text="Tabletop Dice Roller" HorizontalOptions="Center" VerticalOptions="Start" FontSize="40" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Button Text="d4" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="1"/>
-                <Button Text="d6" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="3"/>
-                <Button Text="d8" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="1"/>
-                <Button Text="d10" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="3"/>
-                <Button Text="d12" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="1"/>
-                <Button Text="d20" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="3"/>
-                <Button Text="d100" Clicked="OnButtonClick" FontSize="20" Grid.Row="3" Grid.Column="1"/>
-            </Grid>
-        </StackLayout>
+        <StackLayout>
+            <local:DicePageView/>
+        </StackLayout>        
     </ContentPage>
-    <ContentPage x:Name="CustomRoll" Title="Custom Roll">
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />
-            <Label Text="Name" />
-            <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" />
-            <Label Text="Dice Rolls" />
-            <Label x:Name="CustomRollInput" BackgroundColor="White" TextColor="Black" FontSize="20" />
-            <Button x:Name="CustomRollOk" Text="Ok" Clicked="OnCustomClick" FontSize="20"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <!--Column 0-->
-                <Button Text="d4" Grid.Column="0" Grid.Row="0" Clicked="OnCustomInput" />
-                <Button Text="d6" Grid.Column="0" Grid.Row="1" Clicked="OnCustomInput" />
-                <Button Text="d8" Grid.Column="0" Grid.Row="2" Clicked="OnCustomInput" />
-                <Button Text="d10" Grid.Column="0" Grid.Row="3" Clicked="OnCustomInput" />
-                <Button Text="d12" Grid.Column="0" Grid.Row="4" Clicked="OnCustomInput" />
-                <Button Text="d20" Grid.Column="0" Grid.Row="5" Clicked="OnCustomInput" />
-                <!--Column 1-->
-                <Button Text="1" Grid.Column="1" Grid.Row="0" Clicked="OnCustomInput" />
-                <Button Text="3" Grid.Column="1" Grid.Row="1" Clicked="OnCustomInput" />
-                <Button Text="5" Grid.Column="1" Grid.Row="2" Clicked="OnCustomInput" />
-                <Button Text="7" Grid.Column="1" Grid.Row="3" Clicked="OnCustomInput" />
-                <Button Text="9" Grid.Column="1" Grid.Row="4" Clicked="OnCustomInput" />
-                <!--Column 2-->
-                <Button Text="2" Grid.Column="2" Grid.Row="0" Clicked="OnCustomInput" />
-                <Button Text="4" Grid.Column="2" Grid.Row="1" Clicked="OnCustomInput" />
-                <Button Text="6" Grid.Column="2" Grid.Row="2" Clicked="OnCustomInput" />
-                <Button Text="8" Grid.Column="2" Grid.Row="3" Clicked="OnCustomInput" />
-                <Button Text="0" Grid.Column="2" Grid.Row="4" Clicked="OnCustomInput" />
-                <!--Column 3-->
-                <Button Text="+" Grid.Column="3" Grid.Row="1" Clicked="OnCustomInput" />
-                <Button Text="-" Grid.Column="3" Grid.Row="2" Clicked="OnCustomInput" />
-                <Button Text="Del" Grid.Column="3" Grid.Row="5" Clicked="OnCustomInput" />
-            </Grid>
-            <Button Text="Save" Clicked="OnCustomSave" />
-        </StackLayout>
+    <ContentPage x:Name="CustomInput" Title="Custom Input">        
+        <local:CustomInputView/>
     </ContentPage>
+    <local:CustomRollsView x:Name="CustomRolls" Title="Custom Rolls"/>
 </TabbedPage>

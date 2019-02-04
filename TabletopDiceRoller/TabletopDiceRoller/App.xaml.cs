@@ -30,6 +30,8 @@ namespace TabletopDiceRoller
             }
         }
 
+        public int ResumeAtRollId { get; set; }
+
         protected override void OnStart()
         {
             // Handle when your app starts

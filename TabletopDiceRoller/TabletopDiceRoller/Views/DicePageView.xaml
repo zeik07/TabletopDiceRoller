@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TabletopDiceRoller.DicePageView">
+  <ContentView.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Text="Tabletop Dice Roller" HorizontalOptions="Center" VerticalOptions="Start" FontSize="40" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="d4" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="1"/>
+                <Button Text="d6" Clicked="OnButtonClick" FontSize="20" Grid.Row="0" Grid.Column="3"/>
+                <Button Text="d8" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+                <Button Text="d10" Clicked="OnButtonClick" FontSize="20" Grid.Row="1" Grid.Column="3"/>
+                <Button Text="d12" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="1"/>
+                <Button Text="d20" Clicked="OnButtonClick" FontSize="20" Grid.Row="2" Grid.Column="3"/>
+                <Button Text="d100" Clicked="OnButtonClick" FontSize="20" Grid.Row="3" Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

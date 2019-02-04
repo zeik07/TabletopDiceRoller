@@ -19,9 +19,14 @@ namespace TabletopDiceRoller
             return database.Table<RollItem>().ToListAsync();
         }
 
+        public Task<RollItem> GetItemAsync(int id)
+        {
+            return database.Table<RollItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
         public Task<int> SaveItemAsync(RollItem item)
         {
-            if (item.Name != null)
+            if (item.ID != 0)
             {
                 return database.UpdateAsync(item);
             }

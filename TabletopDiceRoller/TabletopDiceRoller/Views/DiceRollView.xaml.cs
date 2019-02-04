@@ -10,9 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace TabletopDiceRoller
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DiceRoll : ContentPage
+	public partial class DiceRollView : ContentPage
 	{
-		public DiceRoll (string die, string roll, string values)
+        public DiceRollView()
+        {
+            InitializeComponent();
+        }
+
+		public DiceRollView (string die, string roll, string values)
 		{
 			InitializeComponent ();            
             TopLabel.Text = die;
