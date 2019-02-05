@@ -26,17 +26,12 @@ namespace TabletopDiceRoller
 
             var customRollsDataTemplate = new DataTemplate(() =>
             {
-                var title = new Label();
                 var grid = new Grid();
                 var rollButton = new Button();
                 var nameLabel = new Label();
                 var rollLabel = new Label();
                 var deleteButton = new Button();
                 
-                //title label
-                title.Text = "Tabletop Dice Roller";
-                title.FontSize = 40;
-                title.HorizontalOptions = LayoutOptions.Center;
                 //roll button
                 rollButton.Text = "Roll";
                 rollButton.Clicked += OnRollClick;
@@ -48,7 +43,7 @@ namespace TabletopDiceRoller
                 //roll label
                 rollLabel.SetBinding(Label.TextProperty, "Roll");
                 rollLabel.FontSize = 16;
-                rollLabel.VerticalOptions = LayoutOptions.Center;
+                rollLabel.VerticalOptions = LayoutOptions.Center;                
                 //delete button
                 deleteButton.Text = "X";
                 deleteButton.Clicked += OnCustomDelete;
@@ -62,6 +57,7 @@ namespace TabletopDiceRoller
                 grid.Children.Add(rollLabel, 1, 0);
                 grid.Children.Add(rollButton, 2, 0);
                 grid.Children.Add(deleteButton, 3, 0);
+                
 
                 return new ViewCell { View = grid };
             });
@@ -70,6 +66,7 @@ namespace TabletopDiceRoller
             {
                 Children =
                 {
+                    new Label {Text = "Tabletop Dice Roller", FontSize = 40, HorizontalOptions = LayoutOptions.Center },
                     new ListView { ItemsSource = customRolls, ItemTemplate = customRollsDataTemplate }                
                 }                
             };            
