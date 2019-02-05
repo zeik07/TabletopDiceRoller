@@ -31,6 +31,8 @@ namespace TabletopDiceRoller
                 rollItem.Name = RollName.Text;
                 rollItem.Roll = CustomRollInput.Text;
                 App.Database.SaveItemAsync(rollItem);
+                RollName.Text = "";
+                CustomRollInput.Text = "";
             }
         }     
         
@@ -40,16 +42,14 @@ namespace TabletopDiceRoller
             roll.CustomRoll(input);
         }
 
+        private void OnCustomDelete(object sender, EventArgs e)
+        {
+            CustomRollInput.Text = "";
+        }
+
         private void OnCustomInput(Button button, EventArgs e)
         {
-            if (button.Text == "Del")
-            {
-                CustomRollInput.Text = "";
-            }
-            else
-            {
-                CustomRollInput.Text += button.Text;
-            }
+            CustomRollInput.Text += button.Text;
         }
     }
 }

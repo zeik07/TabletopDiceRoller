@@ -29,7 +29,6 @@ namespace TabletopDiceRoller
                 var title = new Label();
                 var grid = new Grid();
                 var rollButton = new Button();
-                var idLabel = new Label();
                 var nameLabel = new Label();
                 var rollLabel = new Label();
                 var deleteButton = new Button();

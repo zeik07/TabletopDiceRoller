@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -24,31 +25,58 @@ namespace TabletopDiceRoller.Modules
 
         public void CustomRoll(string textInput)
         {
-            string error = "Improper format. e.g. 8d6+1d4+1";
+            string error = "Improper format. e.g. 8[d6]+[d4]+1";
             string input = textInput;
             string reg = @"([\+\-])";
+            string regx = @"[\[A-Z\]]";
             string[] rolled = Regex.Split(input, reg);
             string outputRoll = "";
             foreach (string r in rolled)
             {
                 if (r.Contains('d'))
                 {
-                    string[] diceRoll = new string[2];
-
                     try
                     {
-                        diceRoll = r.Split('d');
-                        if (diceRoll.Length != 2)
+                        string[] diceRolled = Regex.Split(r, regx);
+                        List<string> diceRoll = new List<string>();
+                        foreach (string d in diceRolled)
+                        {
+                            if (d != "")
+                            {
+                                diceRoll.Add(d);
+                            }
+                        }
+
+                        int rollCount = 1;
+                        int dieToRoll = 0;
+                        string[] die = new string[2];
+                        if (diceRoll.Count == 1)
+                        {
+                            die = diceRoll[0].Split(new char[] { 'd'} , StringSplitOptions.RemoveEmptyEntries);
+                            dieToRoll = Convert.ToInt32(die[0]);
+                        }
+                        else if(diceRoll.Count == 2)
+                        { 
+                            die = diceRoll[1].Split(new char[] { 'd' }, StringSplitOptions.RemoveEmptyEntries);
+                            dieToRoll = Convert.ToInt32(die[0]);
+                            rollCount = Convert.ToInt32(diceRoll[0]);
+                            //split at d
+                            //set roll count to first number
+                            //set die to second number
+                        }
+                        else
                         {
                             throw new Exception();
                         }
-                        string[] diceResult = new string[Convert.ToInt32(diceRoll[0])];
-                        int diceValue = Convert.ToInt32(diceRoll[1]);
-                        for (int i = 0; i < Convert.ToInt32(diceRoll[0]); i++)
-                        {
-                            diceResult[i] = RollDie(diceValue).ToString();
-                        }
+
+                        string[] diceResult = new string[rollCount];
                         string rollValue = "";
+
+                        for (int i = 0; i < rollCount; i++)
+                        {
+                            diceResult[i] = RollDie(dieToRoll).ToString();
+                        }
+                        
                         foreach (string result in diceResult)
                         {
                             if (rollValue == "")
@@ -60,6 +88,8 @@ namespace TabletopDiceRoller.Modules
                                 rollValue += "+" + result;
                             }
                         }
+
+
                         outputRoll += rollValue;
                     }
                     catch
