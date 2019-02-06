@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace TabletopDiceRoller.Modules
         public async void DisplayRoll(string die, string roll, string values)
         {
             var popUpPage = new DiceRollView(die, roll, values);
-            await App.Current.MainPage.Navigation.PushModalAsync(popUpPage, false);
+            await App.Current.MainPage.Navigation.PushPopupAsync(popUpPage, false);
         }
 
         public void CustomRoll(string textInput)

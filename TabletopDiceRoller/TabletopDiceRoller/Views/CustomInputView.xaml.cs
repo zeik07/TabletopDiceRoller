@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Data;
-using System.Linq;
-using System.Text.RegularExpressions;
 using TabletopDiceRoller.Modules;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -47,8 +44,9 @@ namespace TabletopDiceRoller
             CustomRollInput.Text = "";
         }
 
-        private void OnCustomInput(Button button, EventArgs e)
+        private void OnCustomInput(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
             CustomRollInput.Text += button.Text;
         }
     }

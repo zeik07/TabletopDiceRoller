@@ -4,9 +4,7 @@
              x:Class="TabletopDiceRoller.CustomInputView">
     <ContentView.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />
-            <Label Text="Name" />
-            <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" />
+            <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />            
             <Label Text="Dice Rolls" />
             <Label x:Name="CustomRollInput" BackgroundColor="White" TextColor="Black" FontSize="20" />
             <Grid>
@@ -41,6 +39,8 @@
                 <Button Text="+" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Clicked="OnCustomInput" />
                 <Button Text="-" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" Clicked="OnCustomInput" />
             </Grid>
+            <Label Text="Name" />
+            <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" />
             <Button Text="Save" Clicked="OnCustomSave" />
             <Label x:Name="Error" TextColor="Red"/>
         </StackLayout>
