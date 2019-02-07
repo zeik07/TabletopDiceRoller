@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TabletopDiceRoller.CustomInputView">
     <ContentView.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />            
-            <Label Text="Dice Rolls" />
-            <Label x:Name="CustomRollInput" BackgroundColor="White" TextColor="Black" FontSize="20" />
+        <StackLayout x:Name="InputView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />
+            <Label x:Name="CustomRollInput" BackgroundColor="White" TextColor="Black" FontSize="25" HeightRequest="50" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -40,7 +39,7 @@
                 <Button Text="-" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" Clicked="OnCustomInput" />
             </Grid>
             <Label Text="Name" />
-            <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" />
+            <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" Keyboard="Text" />
             <Button Text="Save" Clicked="OnCustomSave" />
             <Label x:Name="Error" TextColor="Red"/>
         </StackLayout>

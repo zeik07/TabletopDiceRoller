@@ -13,7 +13,8 @@ namespace TabletopDiceRoller
         public CustomInputView ()
 		{
 			InitializeComponent ();
-		}        
+            RollName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+        }        
 
         private void OnCustomSave(object sender, EventArgs e)
         {
