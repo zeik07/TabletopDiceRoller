@@ -1,10 +1,11 @@
 ﻿button
 {
-    background-color: darkslategray;
+    background-color: transparent;
     color: white;
+    font-size: 18;
 }
 stacklayout{
-    background-color: black;
+    background-color: darkslategray;
 }
 label{
     color: white;
