@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletopDiceRoller.Android", "TabletopDiceRoller\TabletopDiceRoller.Android\TabletopDiceRoller.Android.csproj", "{8958D43C-9EE9-4EE2-98C3-0C836C6D7674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletopDiceRoller", "TabletopDiceRoller\TabletopDiceRoller\TabletopDiceRoller.csproj", "{4CEE6866-A1E4-40C9-8070-D30E7D651AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TabletopDiceRoller", "TabletopDiceRoller\TabletopDiceRoller\TabletopDiceRoller.csproj", "{4CEE6866-A1E4-40C9-8070-D30E7D651AD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

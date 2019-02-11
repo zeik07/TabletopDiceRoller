@@ -34,12 +34,12 @@ namespace TabletopDiceRoller
 
                 //name label
                 nameLabel.SetBinding(Label.TextProperty, new Binding("Name"));
-                nameLabel.FontSize = 15;
+                nameLabel.FontSize = 18;
                 nameLabel.VerticalOptions = LayoutOptions.Center;
                 nameLabel.FontAttributes = FontAttributes.Bold;
                 //roll label
                 rollLabel.SetBinding(Label.TextProperty, new Binding("Roll"));
-                rollLabel.FontSize = 15;
+                rollLabel.FontSize = 18;
                 rollLabel.VerticalOptions = LayoutOptions.Center;
                 //delete button
                 deleteButton.Text = "X";
@@ -48,19 +48,19 @@ namespace TabletopDiceRoller
                 //menu button
                 menuButton.Text = char.ConvertFromUtf32(0x2193);
                 menuButton.Clicked += OnMenuClick;
-                
 
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(10, GridUnitType.Absolute) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(.5, GridUnitType.Star) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(.5, GridUnitType.Star) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Absolute) });
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(10, GridUnitType.Absolute) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(3, GridUnitType.Auto) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(3, GridUnitType.Auto) });
 
-                grid.Children.Add(nameLabel);
-                grid.Children.Add(rollLabel, 0, 1);
-                grid.Children.Add(menuButton, 1, 0);
-                grid.Children.Add(deleteButton, 2, 0);
+                grid.Children.Add(nameLabel, 1, 0);
+                grid.Children.Add(rollLabel, 1, 1);
+                grid.Children.Add(menuButton, 2, 0);
+                grid.Children.Add(deleteButton, 3, 0);
                 Grid.SetRowSpan(deleteButton, 2);
                 Grid.SetRowSpan(menuButton, 2);
                 grid.BackgroundColor = Color.BlueViolet;
@@ -69,7 +69,7 @@ namespace TabletopDiceRoller
                 {
                     Content = grid,
                     Padding = 0,
-                    Margin = new Thickness(0,5,0,5)
+                    Margin = new Thickness(5,5,5,5)
                 };
 
                 ViewCell viewCell = new ViewCell
@@ -86,7 +86,7 @@ namespace TabletopDiceRoller
                 ItemsSource = customRolls,
                 ItemTemplate = customRollsDataTemplate,
                 SelectionMode = ListViewSelectionMode.None,
-                RowHeight = 60
+                RowHeight = 70
             };
 
             Content = new StackLayout

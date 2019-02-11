@@ -6,13 +6,8 @@
     <TabbedPage.Resources>
         <StyleSheet Source="/css/styles.css" />
     </TabbedPage.Resources>
-    <ContentPage x:Name="DicePage" Title="Dice Page">
-        <StackLayout>
-            <local:DicePageView/>
-        </StackLayout>        
-    </ContentPage>
-    <ContentPage x:Name="CustomInput" Title="Custom Input">        
+    <ContentPage x:Name="Roll" Title="Roll">        
         <local:CustomInputView/>
     </ContentPage>
-    <local:CustomRollsView x:Name="CustomRolls" Title="Custom Rolls"/>
+    <local:CustomRollsView x:Name="SavedRolls" Title="Saved Rolls"/>
 </TabbedPage>
