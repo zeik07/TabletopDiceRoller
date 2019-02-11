@@ -6,11 +6,11 @@ using Xamarin.Forms.Xaml;
 namespace TabletopDiceRoller
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CustomInputView : ContentView
+	public partial class RollView : ContentView
 	{
         Roll roll = new Roll();
 
-        public CustomInputView ()
+        public RollView ()
 		{
 			InitializeComponent ();
             RollName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);

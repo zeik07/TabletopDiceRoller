@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace TabletopDiceRoller
 {
-    public class CustomRollDatabase
+    public class SavedRollDatabase
     {
         readonly SQLiteAsyncConnection database;
 
-        public CustomRollDatabase(string dbPath)
+        public SavedRollDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<RollItem>().Wait();

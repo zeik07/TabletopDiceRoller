@@ -30,7 +30,15 @@ namespace TabletopDiceRoller.Modules
             string input = textInput;
             string reg = @"([\+\-])";
             string regx = @"[\[A-Z\]]";
-            string[] rolled = Regex.Split(input, reg);
+            string[] rolled;
+            try
+            {
+                rolled = Regex.Split(input, reg);
+            }
+            catch
+            {
+                return;
+            }            
             string outputRoll = "";
             foreach (string r in rolled)
             {

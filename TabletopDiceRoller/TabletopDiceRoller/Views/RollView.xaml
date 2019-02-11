@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TabletopDiceRoller.CustomInputView">
+             x:Class="TabletopDiceRoller.RollView">
     <ContentView.Content>
         <StackLayout x:Name="InputView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />
@@ -14,15 +14,24 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <!--Row 0-->
+                <BoxView BackgroundColor="Purple" Grid.Column="0" Grid.Row="0" />
                 <Button Text="[d2]" Grid.Column="0" Grid.Row="0" Clicked="OnCustomInput" />
+                <BoxView BackgroundColor="YellowGreen" Grid.Column="1" Grid.Row="0" />
                 <Button Text="[d3]" Grid.Column="1" Grid.Row="0" Clicked="OnCustomInput" />
+                <BoxView BackgroundColor="PaleVioletRed" Grid.Column="2" Grid.Row="0" />
                 <Button Text="[d4]" Grid.Column="2" Grid.Row="0" Clicked="OnCustomInput" />
+                <BoxView BackgroundColor="LawnGreen" Grid.Column="3" Grid.Row="0" />
                 <Button Text="[d6]" Grid.Column="3" Grid.Row="0" Clicked="OnCustomInput" />
+                <BoxView BackgroundColor="Pink" Grid.Column="4" Grid.Row="0" />
                 <Button Text="[d8]" Grid.Column="4" Grid.Row="0" Clicked="OnCustomInput" />
                 <!--Row 1-->
+                <BoxView BackgroundColor="Tan" Grid.Column="0" Grid.Row="1" />
                 <Button Text="[d10]" Grid.Column="0" Grid.Row="1" Clicked="OnCustomInput" />
+                <BoxView BackgroundColor="DeepSkyBlue" Grid.Column="1" Grid.Row="1" />
                 <Button Text="[d12]" Grid.Column="1" Grid.Row="1" Clicked="OnCustomInput" />
+                <BoxView BackgroundColor="Orange" Grid.Column="2" Grid.Row="1" />
                 <Button Text="[d20]" Grid.Column="2" Grid.Row="1" Clicked="OnCustomInput" />
+                <BoxView BackgroundColor="DarkBlue" Grid.Column="3" Grid.Row="1" />
                 <Button Text="[d100]" Grid.Column="3" Grid.Row="1" Clicked="OnCustomInput" />
                 <!--Row 2-->
                 <Button Text="7" Grid.Column="1" Grid.Row="2" Clicked="OnCustomInput" />
@@ -41,8 +50,11 @@
                 <Button Text="0" Grid.Column="2" Grid.Row="5" Clicked="OnCustomInput" />
                 <Button Text="-" Grid.Column="3" Grid.Row="5" Clicked="OnCustomInput" />
                 <!--Row 6-->
+                <BoxView BackgroundColor="Red" Grid.Column="0" Grid.Row="6" />
                 <Button Text="Del" Grid.Column="0" Grid.Row="6" Clicked="OnCustomDelete" />
-                <Button Text="Roll" Grid.Column="2" Grid.Row="6" Clicked="OnCustomRoll"/>
+                <BoxView BackgroundColor="SlateGray" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" />
+                <Button Text="Roll" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Clicked="OnCustomRoll"/>
+                <BoxView BackgroundColor="Green" Grid.Column="4" Grid.Row="6" />
                 <Button Text="Save" Grid.Column="4" Grid.Row="6" Clicked="OnCustomSave" />                               
             </Grid>
             <Label Text="Name" />

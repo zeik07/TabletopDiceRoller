@@ -6,11 +6,11 @@ using TabletopDiceRoller.Modules;
 namespace TabletopDiceRoller
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CustomRollsView : ContentPage
+	public partial class SavedRollsView : ContentPage
 	{
         Roll roll = new Roll();
 
-        public CustomRollsView ()
+        public SavedRollsView ()
 		{
 			InitializeComponent ();            
         }
@@ -46,7 +46,7 @@ namespace TabletopDiceRoller
                 deleteButton.Clicked += OnCustomDelete;
                 deleteButton.SetBinding(Button.CommandParameterProperty, new Binding("ID"));
                 //menu button
-                menuButton.Text = char.ConvertFromUtf32(0x2193);
+                menuButton.Text = char.ConvertFromUtf32(0x25BC);
                 menuButton.Clicked += OnMenuClick;
 
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(10, GridUnitType.Absolute) });

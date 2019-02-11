@@ -7,7 +7,7 @@
         <StyleSheet Source="/css/styles.css" />
     </TabbedPage.Resources>
     <ContentPage x:Name="Roll" Title="Roll">        
-        <local:CustomInputView/>
+        <local:RollView/>
     </ContentPage>
-    <local:CustomRollsView x:Name="SavedRolls" Title="Saved Rolls"/>
+    <local:SavedRollsView x:Name="SavedRolls" Title="Saved Rolls"/>
 </TabbedPage>

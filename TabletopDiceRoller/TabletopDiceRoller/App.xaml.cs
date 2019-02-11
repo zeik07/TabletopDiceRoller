@@ -9,7 +9,7 @@ namespace TabletopDiceRoller
 {
     public partial class App : Application
     {
-        static CustomRollDatabase database;
+        static SavedRollDatabase database;
 
         public App()
         {
@@ -18,13 +18,13 @@ namespace TabletopDiceRoller
             MainPage = new MainPage();
         }
 
-        public static CustomRollDatabase Database
+        public static SavedRollDatabase Database
         {
             get
             {
                 if (database == null)
                 {
-                    database = new CustomRollDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CustomRoll.db3"));
+                    database = new SavedRollDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CustomRoll.db3"));
                 }
                 return database;
             }
