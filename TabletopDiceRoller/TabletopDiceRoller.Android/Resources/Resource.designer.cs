@@ -6486,6 +6486,9 @@ namespace TabletopDiceRoller.Droid
 			// aapt resource value: 0x7f0a006f
 			public const int default_activity_button = 2131361903;
 			
+			// aapt resource value: 0x7f0a0100
+			public const int delete = 2131362048;
+			
 			// aapt resource value: 0x7f0a00a9
 			public const int design_bottom_sheet = 2131361961;
 			
@@ -6503,6 +6506,9 @@ namespace TabletopDiceRoller.Droid
 			
 			// aapt resource value: 0x7f0a0027
 			public const int disableHome = 2131361831;
+			
+			// aapt resource value: 0x7f0a0101
+			public const int edit = 2131362049;
 			
 			// aapt resource value: 0x7f0a008f
 			public const int edit_query = 2131361935;
@@ -7455,6 +7461,22 @@ namespace TabletopDiceRoller.Droid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0f0000
+			public const int popup_menu = 2131689472;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}

@@ -29,7 +29,6 @@ namespace TabletopDiceRoller
                 var grid = new Grid();
                 var nameLabel = new Label();
                 var rollLabel = new Label();
-                var deleteButton = new Button();
                 var menuButton = new Button();
 
                 //name label
@@ -41,17 +40,16 @@ namespace TabletopDiceRoller
                 rollLabel.SetBinding(Label.TextProperty, new Binding("Roll"));
                 rollLabel.FontSize = 18;
                 rollLabel.VerticalOptions = LayoutOptions.Center;
-                //delete button
-                deleteButton.Text = "X";
-                deleteButton.Clicked += OnCustomDelete;
-                deleteButton.SetBinding(Button.CommandParameterProperty, new Binding("ID"));
                 //menu button
                 menuButton.Text = char.ConvertFromUtf32(0x25BC);
-                menuButton.Clicked += OnMenuClick;
+                menuButton.SetBinding(Button.CommandParameterProperty, new Binding("ID"));
+                menuButton.Clicked += (s, arg) => 
+                {
+                    DependencyService.Get<IPopUp>().PopUp((View)s, this);
+                };
 
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(10, GridUnitType.Absolute) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(10, GridUnitType.Absolute) });
                 grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(3, GridUnitType.Auto) });
@@ -60,8 +58,6 @@ namespace TabletopDiceRoller
                 grid.Children.Add(nameLabel, 1, 0);
                 grid.Children.Add(rollLabel, 1, 1);
                 grid.Children.Add(menuButton, 2, 0);
-                grid.Children.Add(deleteButton, 3, 0);
-                Grid.SetRowSpan(deleteButton, 2);
                 Grid.SetRowSpan(menuButton, 2);
                 grid.BackgroundColor = Color.BlueViolet;
 
@@ -99,11 +95,6 @@ namespace TabletopDiceRoller
             };
         }
 
-        private void OnMenuClick(object sender, EventArgs e)
-        {
-            
-        }
-
         private void ViewCell_Tapped(object sender, EventArgs e)
         {
             ViewCell view = (ViewCell)sender;
@@ -111,15 +102,8 @@ namespace TabletopDiceRoller
             roll.CustomRoll(items.Roll);
         }
 
-        private async void OnCustomDelete(object sender, EventArgs e)
+        public void RefreshView()
         {
-            Button button = (Button)sender;
-            RollItem delRoll = new RollItem
-            {
-                ID = Convert.ToInt32(button.CommandParameter.ToString())
-            };
-            await App.Database.DeleteItemAsync(delRoll);
-
             var viewModel = BindingContext;
 
             BindingContext = null;

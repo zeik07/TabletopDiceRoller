@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="TabletopDiceRoller.MenuView"
+             BackgroundColor="Transparent"
+             BackgroundInputTransparent="False">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation HasBackgroundAnimation="False" />
+    </pages:PopupPage.Animation>
+    <StackLayout x:Name="Menu" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Padding="20, 20, 20, 20" BackgroundColor="DarkSlateBlue" WidthRequest="150" HeightRequest="150">
+        <Label x:Name="Delete" Text="Delete" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" />
+    </StackLayout>
+</pages:PopupPage>
