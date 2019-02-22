@@ -56,11 +56,7 @@
                 <Button Text="Roll" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Clicked="OnCustomRoll"/>
                 <BoxView BackgroundColor="Green" Grid.Column="4" Grid.Row="6" />
                 <Button Text="Save" Grid.Column="4" Grid.Row="6" Clicked="OnCustomSave" />                               
-            </Grid>
-            <Label Text="Name" />
-            <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" Keyboard="Text" />
-            
-            <Label x:Name="Error" TextColor="Red"/>
+            </Grid>            
         </StackLayout>
     </ContentView.Content>
 </ContentView>

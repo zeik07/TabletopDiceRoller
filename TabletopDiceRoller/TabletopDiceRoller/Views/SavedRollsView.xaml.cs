@@ -8,11 +8,11 @@ namespace TabletopDiceRoller
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SavedRollsView : ContentPage
 	{
-        Roll roll = new Roll();
+        Roll roll = new Roll();        
 
         public SavedRollsView ()
 		{
-			InitializeComponent ();            
+            InitializeComponent ();            
         }
 
         public void CustomOnAppearing(object sender, EventArgs e)
@@ -20,7 +20,7 @@ namespace TabletopDiceRoller
             CustomRolls();
         }
 
-        public async void CustomRolls()
+        private async void CustomRolls()
         {
             var customRolls = await App.Database.GetItemsAsync();
 
@@ -113,7 +113,7 @@ namespace TabletopDiceRoller
             CustomRolls();
         }
 
-        public void OnRollClick(object sender, EventArgs e)
+        private void OnRollClick(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             roll.CustomRoll(button.CommandParameter.ToString());

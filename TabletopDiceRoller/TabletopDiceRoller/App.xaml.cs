@@ -15,7 +15,7 @@ namespace TabletopDiceRoller
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         public static SavedRollDatabase Database

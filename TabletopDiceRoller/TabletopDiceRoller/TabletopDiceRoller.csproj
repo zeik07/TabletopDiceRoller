@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\EditView.xaml.cs">
+      <DependentUpon>EditView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\RollView.xaml.cs">
       <DependentUpon>RollView.xaml</DependentUpon>
     </Compile>
@@ -37,6 +40,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SavedRollsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SaveView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

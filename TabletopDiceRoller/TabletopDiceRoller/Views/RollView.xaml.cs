@@ -13,26 +13,12 @@ namespace TabletopDiceRoller
         public RollView ()
 		{
 			InitializeComponent ();
-            RollName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-        }        
+        }
 
-        private void OnCustomSave(object sender, EventArgs e)
+        private async void OnCustomSave(object sender, EventArgs e)
         {
-            Error.Text = "";
-            if (RollName.Text == null || CustomRollInput.Text == null)
-            {
-                Error.Text = "Missing Field";
-            }
-            else
-            {
-                RollItem rollItem = new RollItem();
-                rollItem.Name = RollName.Text;
-                rollItem.Roll = CustomRollInput.Text;
-                App.Database.SaveItemAsync(rollItem);
-                RollName.Text = "";
-                CustomRollInput.Text = "";
-            }
-        }     
+            await Navigation.PushAsync(new SaveView(CustomRollInput.Text));
+        }
         
         private void OnCustomRoll(object sender, EventArgs e)
         {
