@@ -2,7 +2,8 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TabletopDiceRoller"
-             x:Class="TabletopDiceRoller.MainPage">
+             x:Class="TabletopDiceRoller.MainPage"
+            NavigationPage.HasNavigationBar="False">
     <TabbedPage.Resources>
         <StyleSheet Source="/css/styles.css" />
     </TabbedPage.Resources>

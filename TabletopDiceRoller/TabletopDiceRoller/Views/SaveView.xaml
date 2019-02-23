@@ -2,12 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TabletopDiceRoller.SaveView">
+    <ContentPage.Resources>
+        <StyleSheet Source="/css/styles.css"/>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <Button x:Name="Save" Text="Save" Clicked="OnCustomSave" HorizontalOptions="End" />
+    </NavigationPage.TitleView>
     <StackLayout x:Name="PopUp" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" BackgroundColor="DarkSlateGray">
         <Label Text="Roll" TextColor="White" />
         <Entry x:Name="Roll" BackgroundColor="White" TextColor="Black" Focused="OnFocus" />
         <Label Text="Name" TextColor="White" />
         <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" Keyboard="Text" />
-        <Label x:Name="Error" TextColor="Red"/>
-        <Button x:Name="Save" Text="Save" Clicked="OnCustomSave" />
+        <Label x:Name="Error" TextColor="Red"/>        
     </StackLayout>
 </ContentPage>
