@@ -113,6 +113,12 @@ namespace TabletopDiceRoller
             CustomRolls();
         }
 
+        public async void EditRoll(int id)
+        {         
+            RollItem item = await App.Database.GetItemAsync(id);
+            await Navigation.PushAsync(new SaveView(item.Roll, item.Name, item.ID));
+        }
+
         private void OnRollClick(object sender, EventArgs e)
         {
             Button button = (Button)sender;

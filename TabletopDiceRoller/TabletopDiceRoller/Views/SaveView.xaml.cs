@@ -21,13 +21,6 @@ namespace TabletopDiceRoller
             Roll.Text = roll;
         }
 
-        public SaveView(int id)
-        {
-            /*InitializeComponent();
-            RollName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);*/
-            GetItemByID(id);
-        }
-
         public SaveView(string roll, string name, int id)
         {
             InitializeComponent();
@@ -35,12 +28,6 @@ namespace TabletopDiceRoller
             Roll.Text = roll;
             RollName.Text = name;
             Save.CommandParameter = id;
-        }
-
-        private async void GetItemByID(int id)
-        {
-            RollItem item = await App.Database.GetItemAsync(id);
-            await Navigation.PushAsync(new SaveView(item.Roll, item.Name, item.ID));
         }
 
         private async void OnFocus(object sender, FocusEventArgs e)

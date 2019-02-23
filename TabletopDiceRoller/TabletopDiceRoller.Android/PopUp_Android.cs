@@ -29,11 +29,12 @@ namespace TabletopDiceRoller.Droid
             menu.Show();
         }
 
-        private async void OnCustomEdit(object sender, EventArgs e, object v)
+        private void OnCustomEdit(object sender, EventArgs e, object v)
         {
             Xamarin.Forms.Button button = (Xamarin.Forms.Button)sender;
             int id = Convert.ToInt32(button.CommandParameter);
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushAsync(new SaveView(id));
+            SavedRollsView test = (SavedRollsView)v;
+            test.EditRoll(id);
         }
 
         private async void OnCustomDelete(object sender, EventArgs e, object v)
