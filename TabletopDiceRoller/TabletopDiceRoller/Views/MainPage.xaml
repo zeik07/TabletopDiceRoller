@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:TabletopDiceRoller"
-             x:Class="TabletopDiceRoller.MainPage"
-            NavigationPage.HasNavigationBar="False">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:TabletopDiceRoller"
+            x:Class="TabletopDiceRoller.MainPage"
+            NavigationPage.HasNavigationBar="False"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="BlueViolet"
+            BarTextColor="White">
     <TabbedPage.Resources>
         <StyleSheet Source="/css/styles.css" />
     </TabbedPage.Resources>
-    <ContentPage x:Name="Roll" Title="Roll">        
-        <local:RollView/>
-    </ContentPage>
+    <local:RollView x:Name="Roll" Title="Roll" />
     <local:SavedRollsView x:Name="SavedRolls" Title="Saved Rolls"/>
 </TabbedPage>

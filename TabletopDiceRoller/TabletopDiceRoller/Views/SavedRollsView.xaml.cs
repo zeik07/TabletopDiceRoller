@@ -85,12 +85,21 @@ namespace TabletopDiceRoller
                 RowHeight = 70
             };
 
+            var floatButton = new MyFloatButton
+            {
+                Margin = new Thickness(0, 0, 0, 0),
+                HeightRequest = 56,
+                WidthRequest = 56,
+                HorizontalOptions = LayoutOptions.End
+            };
+
             Content = new StackLayout
             {
                 Children =
                 {
-                    new Label {Text = "Tabletop Dice Roller", FontSize = 40, HorizontalOptions = LayoutOptions.Center },
-                    listView                    
+                    new Label {Text = "zDice", FontSize = 40, HorizontalOptions = LayoutOptions.Center },
+                    listView,
+                    floatButton
                 }
             };
         }

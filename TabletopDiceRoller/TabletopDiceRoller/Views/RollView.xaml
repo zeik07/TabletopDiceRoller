@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TabletopDiceRoller.RollView">
-    <ContentView.Content>
+    <ContentPage.Content>
         <StackLayout x:Name="InputView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Label Text="Tabletop Dice Roller" FontSize="40" HorizontalOptions="Center" />
+            <Label Text="zDice" FontSize="40" HorizontalOptions="Center" />
             <Label x:Name="CustomRollInput" BackgroundColor="White" TextColor="Black" FontSize="35" HeightRequest="75" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -58,5 +58,5 @@
                 <Button Text="Save" Grid.Column="4" Grid.Row="6" Clicked="OnCustomSave" />                               
             </Grid>            
         </StackLayout>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace TabletopDiceRoller
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RollView : ContentView
+	public partial class RollView : ContentPage
 	{
         Roll roll = new Roll();
 
