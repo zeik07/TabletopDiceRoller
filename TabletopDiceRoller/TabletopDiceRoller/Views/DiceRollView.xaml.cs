@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+//TODO: xaml TODO object
 namespace TabletopDiceRoller
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]

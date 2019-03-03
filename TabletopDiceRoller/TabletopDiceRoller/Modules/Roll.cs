@@ -24,22 +24,14 @@ namespace TabletopDiceRoller.Modules
             await App.Current.MainPage.Navigation.PushPopupAsync(popUpPage, false);
         }
 
-        public void CustomRoll(RollItem item)
+        public void CustomRoll(RollItem item, bool isCrit)
         {
-            string error = "Improper format. e.g. 8[d6]+[d4]+1";
-            string input = item.RollDice;
-            string reg = @"([\+\-])";
             string regx = @"[\[A-Z\]]";
-            string[] rolled;
-            try
-            {
-                rolled = Regex.Split(input, reg);
-            }
-            catch
-            {
-                return;
-            }            
+            string error = "Improper format. e.g. 8[d6]+[d4]+1";
             string outputRoll = "";
+            string critInput = "";
+            string input = item.RollDice;            
+            string[] rolled = RollSplit(input);            
             foreach (string r in rolled)
             {
                 if (r.Contains('d'))
@@ -61,6 +53,18 @@ namespace TabletopDiceRoller.Modules
                         string[] die = new string[2];
                         if (diceRoll.Count == 1)
                         {
+                            if (isCrit)
+                            {
+                                rollCount = 2;
+                                if (critInput == "")
+                                {
+                                    critInput += String.Format(rollCount + diceRoll[0]);
+                                }
+                                else
+                                {
+                                    critInput += "+" + String.Format(rollCount + diceRoll[0]);
+                                }
+                            }
                             die = diceRoll[0].Split(new char[] {'d'}, StringSplitOptions.RemoveEmptyEntries);
                             dieToRoll = Convert.ToInt32(die[0]);
                         }
@@ -69,6 +73,18 @@ namespace TabletopDiceRoller.Modules
                             die = diceRoll[1].Split(new char[] {'d'}, StringSplitOptions.RemoveEmptyEntries);
                             dieToRoll = Convert.ToInt32(die[0]);
                             rollCount = Convert.ToInt32(diceRoll[0]);
+                            if (isCrit)
+                            {
+                                rollCount = rollCount * 2;
+                                if (critInput == "")
+                                {
+                                    critInput += String.Format(rollCount + diceRoll[1]);
+                                }
+                                else
+                                {
+                                    critInput += "+" + String.Format(rollCount + diceRoll[1]);
+                                }
+                            }
                             //split at d
                             //set roll count to first number
                             //set die to second number
@@ -97,8 +113,6 @@ namespace TabletopDiceRoller.Modules
                                 rollValue += "+" + result;
                             }
                         }
-
-
                         outputRoll += rollValue;
                     }
                     catch
@@ -109,18 +123,62 @@ namespace TabletopDiceRoller.Modules
                 }
                 else
                 {
+                    if (isCrit)
+                    {
+                        critInput += r;
+                    }
                     outputRoll += r;
                 }
             }
+            if (isCrit)
+            {
+                RollOutput(critInput, outputRoll, false);
+            }
+            else
+            {
+                RollOutput(input, outputRoll, item.CanSave);
+            }                        
+        }
+
+        private void RollOutput(string input, string outputRoll, bool canSave)
+        {
             try
             {
                 int sum = (int)dt.Compute(outputRoll, "");
-                DisplayRoll(input, sum.ToString(), outputRoll);
+                if (sum < 0)
+                {
+                    sum = 0;
+                }
+                if (canSave)
+                {
+                    double save = sum / 2;
+                    int saveSum = (int)Math.Floor(save);
+                    DisplayRoll(input, (sum.ToString() + " | " + saveSum.ToString()), outputRoll);
+                }
+                else
+                {
+                    DisplayRoll(input, sum.ToString(), outputRoll);
+                }                
             }
             catch
             {
                 DisplayRoll(input, "Error", outputRoll);
             }
+        }
+
+        private string[] RollSplit(string input)
+        {
+            string regx = @"([\+\-])";
+            string[] rolled;
+            try
+            {
+                rolled = Regex.Split(input, regx);
+            }
+            catch
+            {
+                rolled = new string[] {input};
+            }
+            return rolled;
         }
     }
 }

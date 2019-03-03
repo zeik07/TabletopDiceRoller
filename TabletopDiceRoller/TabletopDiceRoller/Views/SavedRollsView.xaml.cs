@@ -104,11 +104,16 @@ namespace TabletopDiceRoller
             };
         }
 
-        private void ViewCell_Tapped(object sender, EventArgs e)
+        private async void ViewCell_Tapped(object sender, EventArgs e)
         {
+            bool isCrit = false;                       
             ViewCell view = (ViewCell)sender;
             RollItem item = (RollItem)view.View.BindingContext;
-            roll.CustomRoll(item);
+            if (item.CanCrit)
+            {
+                isCrit = await DisplayAlert(null, "Is this a critical hit?", "Yes", "No");
+            } 
+            roll.CustomRoll(item, isCrit);
         }
 
         public void RefreshView()

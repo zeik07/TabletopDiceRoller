@@ -7,8 +7,9 @@
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation HasBackgroundAnimation="False" />
     </pages:PopupPage.Animation>
-    <StackLayout x:Name="PopUp" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20, 20, 20, 20" BackgroundColor="DarkSlateBlue" WidthRequest="150">
+    <StackLayout x:Name="PopUp" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20, 20, 20, 20" BackgroundColor="DarkSlateBlue" WidthRequest="300">
             <Label x:Name="TopLabel" Text="" FontSize="Medium" TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" />
+        <!--TODO: Add Display for abilites with saves -->
             <Label x:Name="ContentLabel" Text="" FontSize="72" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
             <Label x:Name="BottomLabel" Text="" FontSize="Small" TextColor="White" HorizontalOptions="Center" VerticalOptions="End" LineBreakMode="WordWrap" />
     </StackLayout>
