@@ -2,7 +2,6 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
-using System.Diagnostics;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TabletopDiceRoller
@@ -19,7 +18,7 @@ namespace TabletopDiceRoller
         }
 
         public static SavedRollDatabase Database
-        {
+        {            
             get
             {
                 if (database == null)
@@ -30,8 +29,13 @@ namespace TabletopDiceRoller
             }
         }
 
+        public int ResumeAtProfileId { get; set; }
+        public int ResumeAtFolderId { get; set; }
         public int ResumeAtRollId { get; set; }
-
+        public int ResumeAtLevelId { get; set; }
+        public int ResumeAtCritId { get; set; }
+        public int ResumeAtSaveId { get; set; }
+                
         protected override void OnStart()
         {
             // Handle when your app starts

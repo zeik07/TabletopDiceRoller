@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,13 +20,15 @@ namespace TabletopDiceRoller
             Roll.Text = roll;
         }
 
-        public SaveView(string roll, string name, int id)
+        public SaveView(RollItem item)
         {
             InitializeComponent();
             RollName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
-            Roll.Text = roll;
-            RollName.Text = name;
-            Save.CommandParameter = id;
+            Roll.Text = item.RollDice;
+            RollName.Text = item.RollName;
+            CanSaveToggle.IsToggled = item.CanSave;
+            CanCritToggle.IsToggled = item.CanCrit;
+            Save.CommandParameter = item.RollID;
         }
 
         private async void OnFocus(object sender, FocusEventArgs e)
@@ -45,8 +46,10 @@ namespace TabletopDiceRoller
             Error.Text = "";
             RollItem rollItem = new RollItem
             {
-                Name = RollName.Text,
-                Roll = Roll.Text
+                RollName = RollName.Text,
+                RollDice = Roll.Text,
+                CanSave = CanSaveToggle.IsToggled,
+                CanCrit = CanCritToggle.IsToggled
             };
             if (RollName.Text == null)
             {
@@ -56,12 +59,34 @@ namespace TabletopDiceRoller
             {
                 if (Save.CommandParameter != null)
                 {
-                    rollItem.ID = Convert.ToInt32(Save.CommandParameter);
+                    rollItem.RollID = Convert.ToInt32(Save.CommandParameter);
                 }
                 App.Database.SaveItemAsync(rollItem);
                 Navigation.PopAsync();
             }
             Navigation.PopAsync();
+        }
+
+        public void CritToggled(object sender, EventArgs e)
+        {
+            if (CanCritToggle.IsToggled == true)
+            {
+                if (CanSaveToggle.IsToggled == true)
+                {
+                    CanSaveToggle.IsToggled = false;
+                }
+            }
+        }
+
+        public void SaveToggled(object sender, EventArgs e)
+        {
+            if (CanSaveToggle.IsToggled == true)
+            {
+                if(CanCritToggle.IsToggled == true)
+                {
+                    CanCritToggle.IsToggled = false;
+                }
+            }
         }
     }
 }

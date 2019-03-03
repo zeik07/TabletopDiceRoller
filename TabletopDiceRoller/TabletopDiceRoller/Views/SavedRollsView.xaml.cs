@@ -32,17 +32,17 @@ namespace TabletopDiceRoller
                 var menuButton = new Button();
 
                 //name label
-                nameLabel.SetBinding(Label.TextProperty, new Binding("Name"));
+                nameLabel.SetBinding(Label.TextProperty, new Binding("RollName"));
                 nameLabel.FontSize = 18;
                 nameLabel.VerticalOptions = LayoutOptions.Center;
                 nameLabel.FontAttributes = FontAttributes.Bold;
                 //roll label
-                rollLabel.SetBinding(Label.TextProperty, new Binding("Roll"));
+                rollLabel.SetBinding(Label.TextProperty, new Binding("RollDice"));
                 rollLabel.FontSize = 18;
                 rollLabel.VerticalOptions = LayoutOptions.Center;
                 //menu button
                 menuButton.Text = char.ConvertFromUtf32(0x25BC);
-                menuButton.SetBinding(Button.CommandParameterProperty, new Binding("ID"));
+                menuButton.SetBinding(Button.CommandParameterProperty, new Binding("RollID"));
                 menuButton.Clicked += (s, arg) => 
                 {
                     DependencyService.Get<IPopUp>().PopUp((View)s, this);
@@ -107,8 +107,8 @@ namespace TabletopDiceRoller
         private void ViewCell_Tapped(object sender, EventArgs e)
         {
             ViewCell view = (ViewCell)sender;
-            RollItem items = (RollItem)view.View.BindingContext;
-            roll.CustomRoll(items.Roll);
+            RollItem item = (RollItem)view.View.BindingContext;
+            roll.CustomRoll(item);
         }
 
         public void RefreshView()
@@ -125,13 +125,7 @@ namespace TabletopDiceRoller
         public async void EditRoll(int id)
         {         
             RollItem item = await App.Database.GetItemAsync(id);
-            await Navigation.PushAsync(new SaveView(item.Roll, item.Name, item.ID));
-        }
-
-        private void OnRollClick(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            roll.CustomRoll(button.CommandParameter.ToString());
+            await Navigation.PushAsync(new SaveView(item));
         }
     }
 }

@@ -13,6 +13,10 @@
         <Entry x:Name="Roll" BackgroundColor="White" TextColor="Black" Focused="OnFocus" />
         <Label Text="Name" TextColor="White" />
         <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" Keyboard="Text" />
+        <Label Text="Can Be Saved From?"/>
+        <Switch IsToggled="False" x:Name="CanSaveToggle" Toggled="SaveToggled" />
+        <Label Text="Can Critically Hit?"/>
+        <Switch IsToggled="False" x:Name="CanCritToggle" Toggled="CritToggled" />
         <Label x:Name="Error" TextColor="Red"/>        
     </StackLayout>
 </ContentPage>

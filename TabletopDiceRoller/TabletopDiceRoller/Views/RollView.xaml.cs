@@ -22,8 +22,11 @@ namespace TabletopDiceRoller
         
         private void OnCustomRoll(object sender, EventArgs e)
         {
-            string input = CustomRollInput.Text;
-            roll.CustomRoll(input);
+            RollItem tempItem = new RollItem
+            {
+                RollDice = CustomRollInput.Text
+            };
+            roll.CustomRoll(tempItem);
         }
 
         private void OnCustomDelete(object sender, EventArgs e)

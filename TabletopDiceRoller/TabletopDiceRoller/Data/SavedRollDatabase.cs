@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLiteNetExtensionsAsync.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,28 +12,31 @@ namespace TabletopDiceRoller
         public SavedRollDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
+            //database.CreateTableAsync<Profile>().Wait();
+            //database.CreateTableAsync<Folder>().Wait();
             database.CreateTableAsync<RollItem>().Wait();
+            //database.CreateTableAsync<HasLevels>().Wait();
         }
 
         public Task<List<RollItem>> GetItemsAsync()
         {
-            return database.Table<RollItem>().ToListAsync();
+            return database.GetAllWithChildrenAsync<RollItem>();
         }
 
         public Task<RollItem> GetItemAsync(int id)
         {
-            return database.Table<RollItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return database.GetWithChildrenAsync<RollItem>(id);
         }
 
-        public Task<int> SaveItemAsync(RollItem item)
+        public Task SaveItemAsync(RollItem item)
         {
-            if (item.ID != 0)
+            if (item.RollID != 0)
             {
-                return database.UpdateAsync(item);
+                return database.UpdateWithChildrenAsync(item);
             }
             else
             {
-                return database.InsertAsync(item);
+                return database.InsertWithChildrenAsync(item);
             }
         }
 

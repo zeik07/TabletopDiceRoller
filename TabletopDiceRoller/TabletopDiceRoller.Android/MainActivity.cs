@@ -11,7 +11,7 @@ namespace TabletopDiceRoller.Droid
         public static Context Context;
         public MainActivity()
         {
-            Context = this;
+            Context = this;            
         }
         protected override void OnCreate(Bundle savedInstanceState)
         {

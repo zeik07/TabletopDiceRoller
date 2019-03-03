@@ -42,7 +42,7 @@ namespace TabletopDiceRoller.Droid
             Xamarin.Forms.Button button = (Xamarin.Forms.Button)sender;
             RollItem delRoll = new RollItem
             {
-                ID = Convert.ToInt32(button.CommandParameter.ToString())
+                RollID = Convert.ToInt32(button.CommandParameter.ToString())
             };
             await App.Database.DeleteItemAsync(delRoll);
             SavedRollsView test = (SavedRollsView)v;

@@ -24,10 +24,10 @@ namespace TabletopDiceRoller.Modules
             await App.Current.MainPage.Navigation.PushPopupAsync(popUpPage, false);
         }
 
-        public void CustomRoll(string textInput)
+        public void CustomRoll(RollItem item)
         {
             string error = "Improper format. e.g. 8[d6]+[d4]+1";
-            string input = textInput;
+            string input = item.RollDice;
             string reg = @"([\+\-])";
             string regx = @"[\[A-Z\]]";
             string[] rolled;
@@ -61,12 +61,12 @@ namespace TabletopDiceRoller.Modules
                         string[] die = new string[2];
                         if (diceRoll.Count == 1)
                         {
-                            die = diceRoll[0].Split(new char[] { 'd'} , StringSplitOptions.RemoveEmptyEntries);
+                            die = diceRoll[0].Split(new char[] {'d'}, StringSplitOptions.RemoveEmptyEntries);
                             dieToRoll = Convert.ToInt32(die[0]);
                         }
                         else if(diceRoll.Count == 2)
                         { 
-                            die = diceRoll[1].Split(new char[] { 'd' }, StringSplitOptions.RemoveEmptyEntries);
+                            die = diceRoll[1].Split(new char[] {'d'}, StringSplitOptions.RemoveEmptyEntries);
                             dieToRoll = Convert.ToInt32(die[0]);
                             rollCount = Convert.ToInt32(diceRoll[0]);
                             //split at d
