@@ -18,9 +18,9 @@ namespace TabletopDiceRoller.Modules
             return rolled;
         }
 
-        public async void DisplayRoll(string die, string roll, string values, bool save)
+        public async void DisplayRoll(DisplayItem display)
         {
-            var popUpPage = new DiceRollView(die, roll, values, save);
+            var popUpPage = new DiceRollView(display.Die,display.Roll,display.Values,display.Save);
             await App.Current.MainPage.Navigation.PushPopupAsync(popUpPage, false);
         }
 
@@ -58,11 +58,11 @@ namespace TabletopDiceRoller.Modules
                                 rollCount = 2;
                                 if (critInput == "")
                                 {
-                                    critInput += String.Format(rollCount + diceRoll[0]);
+                                    critInput += String.Format(rollCount + "[" + diceRoll[0] + "]");
                                 }
                                 else
                                 {
-                                    critInput += "+" + String.Format(rollCount + diceRoll[0]);
+                                    critInput += String.Format(rollCount + "+[" + diceRoll[0] + "]");
                                 }
                             }
                             die = diceRoll[0].Split(new char[] {'d'}, StringSplitOptions.RemoveEmptyEntries);
@@ -78,11 +78,11 @@ namespace TabletopDiceRoller.Modules
                                 rollCount = rollCount * 2;
                                 if (critInput == "")
                                 {
-                                    critInput += String.Format(rollCount + diceRoll[1]);
+                                    critInput += String.Format(rollCount + "[" + diceRoll[1] + "]");
                                 }
                                 else
                                 {
-                                    critInput += "+" + String.Format(rollCount + diceRoll[1]);
+                                    critInput += String.Format(rollCount + "+[" + diceRoll[1] + "]");
                                 }
                             }
                             //split at d
@@ -142,8 +142,9 @@ namespace TabletopDiceRoller.Modules
 
         private void RollOutput(string input, string outputRoll, bool canSave)
         {
+            DisplayItem display = new DisplayItem();
             try
-            {
+            {                
                 int sum = (int)dt.Compute(outputRoll, "");
                 if (sum < 0)
                 {
@@ -153,17 +154,27 @@ namespace TabletopDiceRoller.Modules
                 {
                     double save = sum / 2;
                     int saveSum = (int)Math.Floor(save);
-                    DisplayRoll(input, (sum.ToString() + " | " + saveSum.ToString()), outputRoll, true);
+                    display.Die = input;
+                    display.Roll = (sum.ToString() + " | " + saveSum.ToString());
+                    display.Values = outputRoll;
+                    display.Save = true;                    
                 }
                 else
                 {
-                    DisplayRoll(input, sum.ToString(), outputRoll, false);
+                    display.Die = input;
+                    display.Roll = sum.ToString();
+                    display.Values = outputRoll;
+                    display.Save = false;
                 }                
             }
             catch
             {
-                DisplayRoll(input, "Error", outputRoll, false);
+                display.Die = input;
+                display.Roll = "Error";
+                display.Values = outputRoll;
+                display.Save = false;
             }
+            DisplayRoll(display);
         }
 
         private string[] RollSplit(string input)
