@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-//TODO: xaml TODO object
 namespace TabletopDiceRoller
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -19,12 +18,13 @@ namespace TabletopDiceRoller
             InitializeComponent();
         }
 
-		public DiceRollView (string die, string roll, string values)
+		public DiceRollView (string die, string roll, string values, bool save)
 		{
 			InitializeComponent ();            
             TopLabel.Text = die;
             ContentLabel.Text = roll;
             BottomLabel.Text = values;
+            SavedLabel.IsVisible = save;
 		}
 
         protected override void OnAppearing()

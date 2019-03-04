@@ -18,9 +18,9 @@ namespace TabletopDiceRoller.Modules
             return rolled;
         }
 
-        public async void DisplayRoll(string die, string roll, string values)
+        public async void DisplayRoll(string die, string roll, string values, bool save)
         {
-            var popUpPage = new DiceRollView(die, roll, values);
+            var popUpPage = new DiceRollView(die, roll, values, save);
             await App.Current.MainPage.Navigation.PushPopupAsync(popUpPage, false);
         }
 
@@ -153,16 +153,16 @@ namespace TabletopDiceRoller.Modules
                 {
                     double save = sum / 2;
                     int saveSum = (int)Math.Floor(save);
-                    DisplayRoll(input, (sum.ToString() + " | " + saveSum.ToString()), outputRoll);
+                    DisplayRoll(input, (sum.ToString() + " | " + saveSum.ToString()), outputRoll, true);
                 }
                 else
                 {
-                    DisplayRoll(input, sum.ToString(), outputRoll);
+                    DisplayRoll(input, sum.ToString(), outputRoll, false);
                 }                
             }
             catch
             {
-                DisplayRoll(input, "Error", outputRoll);
+                DisplayRoll(input, "Error", outputRoll, false);
             }
         }
 
