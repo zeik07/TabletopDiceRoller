@@ -12,21 +12,18 @@ namespace TabletopDiceRoller
         public SavedRollDatabase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
-            //database.CreateTableAsync<Profile>().Wait();
-            //database.CreateTableAsync<Folder>().Wait();
-            database.CreateTableAsync<RollItem>().Wait();
-            //database.CreateTableAsync<HasLevels>().Wait();
-        }
+            database.CreateTablesAsync<RollItem, HasLevels>().Wait();
+        }        
 
         public Task<List<RollItem>> GetItemsAsync()
         {
-            return database.GetAllWithChildrenAsync<RollItem>();
+            return database.Table<RollItem>().ToListAsync();
         }
 
         public Task<RollItem> GetItemAsync(int id)
         {
-            return database.GetWithChildrenAsync<RollItem>(id);
-        }
+            return database.GetWithChildrenAsync<RollItem>(id, recursive: true);
+        }        
 
         public Task SaveItemAsync(RollItem item)
         {
@@ -38,11 +35,11 @@ namespace TabletopDiceRoller
             {
                 return database.InsertWithChildrenAsync(item);
             }
-        }
+        }        
 
         public Task<int> DeleteItemAsync(RollItem item)
         {
             return database.DeleteAsync(item);
         }
-    }
+    }    
 }

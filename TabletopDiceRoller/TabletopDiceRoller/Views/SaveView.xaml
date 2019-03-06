@@ -9,10 +9,14 @@
         <Button x:Name="Save" Text="Save" Clicked="OnCustomSave" HorizontalOptions="End" />
     </NavigationPage.TitleView>
     <StackLayout x:Name="PopUp" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" BackgroundColor="DarkSlateGray">
-        <Label Text="Roll" TextColor="White" />
-        <Entry x:Name="Roll" BackgroundColor="White" TextColor="Black" Focused="OnFocus" />
-        <Label Text="Name" TextColor="White" />
+        <Label Text="Profile" />
+        <Entry x:Name="ProfileName" BackgroundColor="White" />
+        <Label Text="Folder" />
+        <Entry x:Name="FolderName" BackgroundColor="White"/>
+        <Label Text="Name" />
         <Entry x:Name="RollName" BackgroundColor="White" TextColor="Black" Placeholder="e.g. Lightning Bolt" Keyboard="Text" />
+        <Label Text="Roll" />
+        <Entry x:Name="Roll" BackgroundColor="White" TextColor="Black" Focused="OnFocus" />
         <Label Text="Can Be Saved From?"/>
         <Switch IsToggled="False" x:Name="CanSaveToggle" Toggled="SaveToggled" />
         <Label Text="Can Critically Hit?"/>

@@ -28,13 +28,6 @@ namespace TabletopDiceRoller
                 return database;
             }
         }
-
-        public int ResumeAtProfileId { get; set; }
-        public int ResumeAtFolderId { get; set; }
-        public int ResumeAtRollId { get; set; }
-        public int ResumeAtLevelId { get; set; }
-        public int ResumeAtCritId { get; set; }
-        public int ResumeAtSaveId { get; set; }
                 
         protected override void OnStart()
         {

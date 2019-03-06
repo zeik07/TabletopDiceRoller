@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,12 +11,16 @@ namespace TabletopDiceRoller
         public SaveView ()
 		{            
             InitializeComponent ();
+            ProfileName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+            FolderName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
             RollName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);            
         }
 
         public SaveView(string roll)
         {
             InitializeComponent();
+            ProfileName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
+            FolderName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
             RollName.Keyboard = Keyboard.Create(KeyboardFlags.CapitalizeWord);
             Roll.Text = roll;
         }
@@ -30,7 +35,7 @@ namespace TabletopDiceRoller
             CanCritToggle.IsToggled = item.CanCrit;
             Save.CommandParameter = item.RollID;
         }
-
+        
         private async void OnFocus(object sender, FocusEventArgs e)
         {
             Roll.Unfocus();
@@ -43,27 +48,34 @@ namespace TabletopDiceRoller
 
         private void OnCustomSave(object sender, EventArgs e)
         {
+            if (ProfileName.Text is null || FolderName.Text is null || RollName.Text is null || Roll.Text is null)
+            {
+                Error.Text = "Missing Field";
+                return;
+            }
             Error.Text = "";
+            
             RollItem rollItem = new RollItem
             {
                 RollName = RollName.Text,
                 RollDice = Roll.Text,
                 CanSave = CanSaveToggle.IsToggled,
-                CanCrit = CanCritToggle.IsToggled
+                CanCrit = CanCritToggle.IsToggled,
+                Folder = FolderName.Text,
+                Profile = ProfileName.Text
             };
-            if (RollName.Text == null)
+            
+            HasLevels hasLevels = new HasLevels
             {
-                Error.Text = "Missing Field";
-            }
-            else
+                BaseRoll = null
+            };
+
+            if (Save.CommandParameter != null)
             {
-                if (Save.CommandParameter != null)
-                {
-                    rollItem.RollID = Convert.ToInt32(Save.CommandParameter);
-                }
-                App.Database.SaveItemAsync(rollItem);
-                Navigation.PopAsync();
+                rollItem.RollID = Convert.ToInt32(Save.CommandParameter);
             }
+
+            App.Database.SaveItemAsync(rollItem);
             Navigation.PopAsync();
         }
 

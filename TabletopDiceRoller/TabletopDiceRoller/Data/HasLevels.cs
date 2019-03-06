@@ -5,7 +5,7 @@ namespace TabletopDiceRoller
 {
     public class HasLevels
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, NotNull]
         public int LevelID { get; set; }
         public string BaseRoll { get; set; }
         public int BaseLevel { get; set; }
@@ -15,5 +15,7 @@ namespace TabletopDiceRoller
 
         [ForeignKey(typeof(RollItem))]
         public int RollID { get; set; }
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
+        public RollItem RollItem { get; set; }
     }
 }
