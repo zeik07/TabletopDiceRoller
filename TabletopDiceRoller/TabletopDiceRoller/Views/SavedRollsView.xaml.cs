@@ -2,17 +2,21 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using TabletopDiceRoller.Modules;
+using System.Collections.Generic;
 
 namespace TabletopDiceRoller
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SavedRollsView : ContentPage
 	{
-        Roll roll = new Roll();        
+        Roll roll = new Roll();
+        DataTemplate rollTemplate;
+        DataTemplate labelTemplate;
 
         public SavedRollsView ()
 		{
-            InitializeComponent ();            
+            InitializeComponent ();
+            Initiate();
         }
 
         public void CustomOnAppearing(object sender, EventArgs e)
@@ -20,34 +24,59 @@ namespace TabletopDiceRoller
             CustomRolls();
         }
 
-        private async void CustomRolls()
+        private DataTemplate LabelTemplate()
         {
-            var customRolls = await App.Database.GetItemsAsync();
-
-            var customRollsDataTemplate = new DataTemplate(() =>
+            labelTemplate = new DataTemplate(() =>
             {
-                var grid = new Grid();
-                var nameLabel = new Label();
-                var rollLabel = new Label();
-                var menuButton = new Button();
+                var nameLabel = new Label
+                {
+                    FontSize = 24,
+                    VerticalOptions = LayoutOptions.Center
+                };
+                nameLabel.Margin = new Thickness(5, 5, 5, 5);
+                nameLabel.SetBinding(Label.TextProperty, new Binding("Container"));
 
-                //name label
+                ViewCell viewCell = new ViewCell
+                {
+                    View = nameLabel
+                };
+
+                return viewCell;
+            });
+
+            return labelTemplate;
+        }
+
+        private DataTemplate RollTemplate()
+        {
+            rollTemplate = new DataTemplate(() =>
+            {
+                var nameLabel = new Label
+                {
+                    FontSize = 18,
+                    VerticalOptions = LayoutOptions.Center,
+                    FontAttributes = FontAttributes.Bold
+                };
                 nameLabel.SetBinding(Label.TextProperty, new Binding("RollName"));
-                nameLabel.FontSize = 18;
-                nameLabel.VerticalOptions = LayoutOptions.Center;
-                nameLabel.FontAttributes = FontAttributes.Bold;
-                //roll label
+
+                var rollLabel = new Label
+                {
+                    FontSize = 18,
+                    VerticalOptions = LayoutOptions.Center
+                };
                 rollLabel.SetBinding(Label.TextProperty, new Binding("RollDice"));
-                rollLabel.FontSize = 18;
-                rollLabel.VerticalOptions = LayoutOptions.Center;
-                //menu button
-                menuButton.Text = char.ConvertFromUtf32(0x25BC);
+
+                var menuButton = new Button
+                {
+                    Text = char.ConvertFromUtf32(0x25BC)
+                };
                 menuButton.SetBinding(Button.CommandParameterProperty, new Binding("RollID"));
-                menuButton.Clicked += (s, arg) => 
+                menuButton.Clicked += (s, arg) =>
                 {
                     DependencyService.Get<IPopUp>().PopUp((View)s, this);
                 };
 
+                var grid = new Grid();
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(10, GridUnitType.Absolute) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
@@ -65,7 +94,7 @@ namespace TabletopDiceRoller
                 {
                     Content = grid,
                     Padding = 0,
-                    Margin = new Thickness(5,5,5,5)
+                    Margin = new Thickness(5, 5, 5, 5)
                 };
 
                 ViewCell viewCell = new ViewCell
@@ -73,18 +102,51 @@ namespace TabletopDiceRoller
                     View = frame
                 };
                 viewCell.Tapped += ViewCell_Tapped;
-                                
+
                 return viewCell;
             });
+            return rollTemplate;
+        }
+
+        private void Initiate()
+        {
+            //required to initialize ContainerItem so objects of ContainerItem created
+            //in a loop are accessible
+            ContainerItem initiate = new ContainerItem();
+            var foo = initiate.Container;
+        }
+
+        private async void CustomRolls()
+        {
+            List<object> listRolls = new List<object>();
+
+            var profiles = await App.Database.GetProfliesAsync();
+            for (int p = 0; p < profiles.Count; p++)
+            {
+                RollItem profile = profiles[p];
+                listRolls.Add(new ContainerItem { Container = profile.Profile });
+                var folders = await App.Database.GetFoldersAsync(profile.Profile);
+                for (int f = 0; f < folders.Count; f++)
+                {
+                    RollItem folder = folders[f];                    
+                    listRolls.Add(new ContainerItem { Container = folder.Folder });
+                    var rolls = await App.Database.GetItemsAsync(profile.Profile, folder.Folder);
+                    foreach (var roll in rolls)
+                    {
+                        listRolls.Add(roll);
+                    }                    
+                }
+            }
 
             var listView = new ListView
             {
-                ItemsSource = customRolls,
-                ItemTemplate = customRollsDataTemplate,
+                ItemsSource = listRolls,
+                ItemTemplate = new RollsTemplateSelector { RollTemplate = RollTemplate(), LabelTemplate = LabelTemplate() },
                 SelectionMode = ListViewSelectionMode.None,
-                RowHeight = 70
+                RowHeight = 70,
+                HasUnevenRows = true
             };
-
+            
             var floatButton = new MyFloatButton
             {
                 Margin = new Thickness(0, 0, 0, 0),
@@ -93,15 +155,17 @@ namespace TabletopDiceRoller
                 HorizontalOptions = LayoutOptions.End
             };
 
-            Content = new StackLayout
+            var layout = new StackLayout
             {
                 Children =
                 {
                     new Label {Text = "zDice", FontSize = 40, HorizontalOptions = LayoutOptions.Center },
                     listView,
                     floatButton
-                }
+                }                
             };
+
+            Content = layout;
         }
 
         private async void ViewCell_Tapped(object sender, EventArgs e)

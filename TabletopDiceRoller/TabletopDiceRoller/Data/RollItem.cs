@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TabletopDiceRoller
 {
-    [Table("RollItems")]
+    [Table("RollItem")]
     public class RollItem
     {
         [PrimaryKey, AutoIncrement, NotNull]

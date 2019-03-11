@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using SQLiteNetExtensionsAsync.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -40,6 +41,21 @@ namespace TabletopDiceRoller
         public Task<int> DeleteItemAsync(RollItem item)
         {
             return database.DeleteAsync(item);
+        }
+
+        public Task<List<RollItem>> GetProfliesAsync()
+        {
+            return database.QueryAsync<RollItem>("SELECT DISTINCT Profile FROM RollItem");
+        }
+
+        public Task<List<RollItem>> GetFoldersAsync(string profile)
+        {
+            return database.QueryAsync<RollItem>(string.Format("SELECT DISTINCT Folder FROM RollItem WHERE Profile = '" + profile +"'" ));
+        }
+
+        public Task<List<RollItem>> GetItemsAsync(string profile, string folder)
+        {
+            return database.QueryAsync<RollItem>(string.Format("SELECT * FROM RollItem WHERE Profile = '" + profile + "' AND Folder = '" + folder + "'"));
         }
     }    
 }

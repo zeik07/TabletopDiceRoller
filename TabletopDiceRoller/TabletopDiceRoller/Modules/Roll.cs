@@ -82,7 +82,7 @@ namespace TabletopDiceRoller.Modules
                                 }
                                 else
                                 {
-                                    critInput += String.Format(rollCount + "+[" + diceRoll[1] + "]");
+                                    critInput += String.Format(rollCount + "[" + diceRoll[1] + "]");
                                 }
                             }
                             //split at d
